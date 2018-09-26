@@ -35,7 +35,6 @@ public class p368{
 
 		} while(huevos != 0 && capacidad != 0);
 
-
 	}
 	
 }
