@@ -43,7 +43,6 @@ public class p411 {
 		}
 
 
-
 		s.close();
 	}
 
