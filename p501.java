@@ -33,7 +33,7 @@ public class p501 {
             //         dados.add(Integer.parseInt(""+temp.charAt(i)));
             //     }
             // }
-
+ 
             p = 0;
             for (int i = 0; i < nO; i++) {
                 
