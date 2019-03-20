@@ -2,48 +2,53 @@ import java.util.*;
 
 public class p507 { 
 
-  
-  
-  
+
     public static void main(String[] args) {
 
         Scanner s = new Scanner(System.in);
 
-        int nFamiliares = s.nextInt();
-        int pesoMax = s.nextInt();
-        int temp;
-        ArrayList<Integer> familiares;
+        int integrantes, i, numPersonas;
+        long pesoMax, parejas, peso, pesoTandem;
+        int ini, fin;
+        long[] personas;
 
         while (true) {
 
-            if (nFamiliares == 0 && pesoMax == 0) break;
+            integrantes = s.nextInt();
+            pesoMax     = s.nextLong();
+            if (integrantes == 0 && pesoMax == 0) break;
 
-            familiares = new ArrayList<Integer>();
-            int parejas = 0;
-
-            for (int i = 0; i < nFamiliares; i++) {
-              temp = s.nextInt();
-              if (temp < pesoMax) familiares.add(temp);
-            }
-
-            Collections.sort(familiares);
+            personas = new long[integrantes];
+            numPersonas = 0;
             
-            int n = familiares.size();
-            for (int i = n-1; i >= 0; i--) {
-              for (int j = i-1; j >= 0; j--) {
-                if (familiares.get(i) + familiares.get(j) <= pesoMax) {
-                  parejas += n-j;
-                  break;
-                } 
-              }
+            for (i = 0; i < integrantes; i++) {
+                peso = s.nextLong();
+                if (peso <= pesoMax) {
+                    personas[numPersonas] = peso;
+                    numPersonas++;                 
+                }
+            }
+            
+            Arrays.sort(personas, 0, numPersonas);
+            
+            parejas = 0;
+            ini = 0;
+            fin = numPersonas - 1;
+
+            while (ini < fin) {
+                pesoTandem = personas[ini] + personas[fin];
+                if (pesoTandem > pesoMax) {
+                    fin--;
+                }
+                else {
+                    parejas += fin - ini;
+                    ini++;
+                }
             }
 
             System.out.println( parejas );
-
-            nFamiliares = s.nextInt();
-            pesoMax = s.nextInt();
         }
 
     }
-	
+
 }
